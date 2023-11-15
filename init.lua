@@ -174,6 +174,13 @@ require('lazy').setup({
         section_separators = '',
       },
     },
+    config = function()  -- Changes lualine's colourscheme when the nvim's colourscheme is changed.
+      vim.api.nvim_create_autocmd('ColorScheme', {
+        callback = function()
+          require('lualine').setup({ options={ theme=vim.cmd('colorscheme') } })
+        end
+      })
+    end
   },
 
   {
