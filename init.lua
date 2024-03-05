@@ -207,7 +207,12 @@ require('lazy').setup({
     priority = 1000,
     lazy = false,
     config = function()
-      vim.cmd.colorscheme 'catppuccin-frappe'
+      local time = os.date("*t")
+      if time.hour > 8 and time.hour < 17 then
+        vim.cmd.colorscheme 'catppuccin-latte'
+      else
+        vim.cmd.colorscheme 'catppuccin-frappe'
+      end
     end,
   },
 
