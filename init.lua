@@ -656,7 +656,7 @@ cmp.setup {
     end,
   },
   completion = {
-    completeopt = 'menu,menuone,noinsert',
+    completeopt = 'menu,menuone,noinsert,noselect',  -- Do not select an autocomplete option automatically
   },
   mapping = cmp.mapping.preset.insert {
     ['<C-n>'] = cmp.mapping.select_next_item(),
@@ -666,7 +666,7 @@ cmp.setup {
     ['<C-Space>'] = cmp.mapping.complete {},
     ['<CR>'] = cmp.mapping.confirm {
       behavior = cmp.ConfirmBehavior.Replace,
-      select = true,
+      select = false,  -- Do not select and use the 1st suggestion if none is selected when <CR> is pressed
     },
     ['<Tab>'] = cmp.mapping(function(fallback)
       if cmp.visible() then
