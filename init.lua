@@ -99,7 +99,7 @@ vim.g.have_nerd_font = true
 --  For more options, you can see `:help option-list`
 
 -- Make line numbers default
--- vim.opt.number = true
+vim.opt.number = true
 -- You can also add relative line numbers, to help with jumping.
 --  Experiment for yourself to see if you like it!
 vim.opt.relativenumber = true
@@ -323,13 +323,6 @@ require('lazy').setup({
         { '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } },
       },
     },
-    config = function() -- Changes lualine's colourscheme when the nvim's colourscheme is changed.
-      vim.api.nvim_create_autocmd('ColorScheme', {
-        callback = function()
-          require('lualine').setup { options = { theme = vim.cmd 'colorscheme' } }
-        end,
-      })
-    end,
   },
 
   -- NOTE: Plugins can specify dependencies.
@@ -640,7 +633,7 @@ require('lazy').setup({
           },
         },
         pylsp = {},
-        rust_analyser = {},
+        rust_analyzer = {},
       }
 
       -- Ensure the servers and tools above are installed
@@ -839,7 +832,6 @@ require('lazy').setup({
     --
     -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
     'folke/tokyonight.nvim',
-    priority = 1000, -- Make sure to load this before all the other start plugins.
     init = function()
       -- Load the colorscheme here.
       -- Like many other themes, this one has different styles, and you could load
@@ -849,6 +841,13 @@ require('lazy').setup({
       -- You can configure highlights by doing something like:
       vim.cmd.hi 'Comment gui=none'
     end,
+  },
+
+  {
+    -- Catppuccin
+    'catppuccin/nvim',
+    name = 'catppuccin',
+    priority = 1000, -- Load before anything else
   },
 
   -- Highlight todo, notes, etc in comments
