@@ -91,7 +91,7 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
 -- Set to true if you have a Nerd Font installed and selected in the terminal
-vim.g.have_nerd_font = false
+vim.g.have_nerd_font = true
 
 -- [[ Setting options ]]
 -- See `:help vim.opt`
@@ -99,10 +99,10 @@ vim.g.have_nerd_font = false
 --  For more options, you can see `:help option-list`
 
 -- Make line numbers default
-vim.opt.number = true
+-- vim.opt.number = true
 -- You can also add relative line numbers, to help with jumping.
 --  Experiment for yourself to see if you like it!
--- vim.opt.relativenumber = true
+vim.opt.relativenumber = true
 
 -- Enable mouse mode, can be useful for resizing splits for example!
 vim.opt.mouse = 'a'
@@ -155,7 +155,7 @@ vim.opt.inccommand = 'split'
 vim.opt.cursorline = true
 
 -- Minimal number of screen lines to keep above and below the cursor.
-vim.opt.scrolloff = 10
+vim.opt.scrolloff = 5
 
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
@@ -323,13 +323,13 @@ require('lazy').setup({
         { '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } },
       },
     },
-    config = function()  -- Changes lualine's colourscheme when the nvim's colourscheme is changed.
+    config = function() -- Changes lualine's colourscheme when the nvim's colourscheme is changed.
       vim.api.nvim_create_autocmd('ColorScheme', {
         callback = function()
-          require('lualine').setup({ options={ theme=vim.cmd('colorscheme') } })
-        end
+          require('lualine').setup { options = { theme = vim.cmd 'colorscheme' } }
+        end,
       })
-    end
+    end,
   },
 
   -- NOTE: Plugins can specify dependencies.
@@ -639,6 +639,8 @@ require('lazy').setup({
             },
           },
         },
+        pylsp = {},
+        rust_analyser = {},
       }
 
       -- Ensure the servers and tools above are installed
@@ -763,7 +765,7 @@ require('lazy').setup({
             luasnip.lsp_expand(args.body)
           end,
         },
-        completion = { completeopt = 'menu,menuone,noinsert' },
+        completion = { completeopt = 'menu,menuone,noinsert,noselect' },
 
         -- For an understanding of why these mappings were
         -- chosen, you will need to read `:help ins-completion`
