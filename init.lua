@@ -645,6 +645,7 @@ require('lazy').setup({
         },
         pylsp = {},
         rust_analyzer = {},
+        bashls = {},
       }
 
       -- Ensure the servers and tools above are installed
